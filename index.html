@@ -282,11 +282,12 @@
   @keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.reveal{animation:none}}
 
-  @media (max-width:720px){
+  /* wrapper is transparent on desktop (no layout change); becomes the collapsible region on mobile */
+  .card-collapse{display:contents}
+
+  @media (max-width:760px){
     .app{padding:24px 16px;height:auto;min-height:0}
     main{grid-template-columns:1fr}
-    .list{border-right:none;border-bottom:1px solid var(--line);max-height:220px;box-shadow:inset 0 -12px 10px -10px rgba(0,0,0,0.08);}
-    .pane{padding:26px 22px 32px}
     .title h1{font-size:25px}
   }
 
@@ -302,21 +303,89 @@
   html:not(.js) .list-note{display:block}
   .list-note{display:none;font-family:var(--mono);font-size:10.5px;color:var(--muted);padding:8px 16px;letter-spacing:.04em}
 
-  /* --- v9 layout: one natural page scroll; no nested pane scrolling --- */
-  html,body{height:auto}
-  .app{height:auto;min-height:0}
-  main{flex:none;min-height:0}
-  .list{overflow:visible}
-  .detail{overflow:visible}
-  @media (max-width:720px){
-    main{display:block}
-    .list{max-height:none;overflow:visible;box-shadow:none}
-    .item{padding:16px 18px}
-    .item .nm{font-size:16px}
-    .pane{padding:24px 20px 30px}
-    .tabs{width:100%}
-    .tab{flex:1;text-align:center;padding:9px 14px}
-    header{margin-bottom:18px}
+  /* desktop shell: the header + nav stay put, only the detail pane scrolls (master-detail).
+     reserving the scrollbar gutter keeps the layout from shifting sideways when panes of
+     different heights toggle the scrollbar on selection. */
+  html,body{height:100%}
+  .app{height:100%;min-height:0}
+  main{flex:1;min-height:0}
+  .list{overflow-y:auto}
+  .detail{overflow-y:auto;scrollbar-gutter:stable}
+  .bar{position:sticky;top:0;z-index:1}
+  @media (max-width:760px){
+    /* mobile is a single natural document scroll (the card stack) */
+    html,body{height:auto}
+    /* the view toggle is locked to the top of the viewport */
+    .tabs{
+      position:fixed; top:0; left:0; right:0; z-index:60;
+      width:auto; display:flex; gap:6px;
+      padding:7px 14px;
+      padding-top:calc(7px + env(safe-area-inset-top,0px));
+      background:var(--paper);
+      border:none; border-radius:0;
+      border-bottom:1px solid var(--line);
+    }
+    .tab{flex:1;text-align:center;padding:9px 8px;border-radius:8px;font-size:12px;letter-spacing:.02em}
+    .tab[aria-selected="true"]{background:var(--ink);color:#fff}
+
+    /* content clears the fixed bar (its height is measured in JS -> --barh) */
+    .app{padding:calc(var(--barh,56px) + 14px) 16px 32px;height:auto;min-height:0}
+    header{display:block;margin:0 0 14px}
+    .title h1{font-size:24px}
+    .title p{font-size:14.5px}
+
+    /* single vertical column of cards */
+    main{display:block;border:none;border-radius:0;background:none;overflow:visible}
+    .list{display:none}
+    .detail{overflow:visible}
+    .detail .bar{display:none}
+    .panes{display:flex;flex-direction:column}
+
+    /* show every card belonging to the active view */
+    .js .pane{display:none}
+    body.view-approaches .pane[data-view="approaches"]{display:block}
+    body.view-skeptics .pane[data-view="skeptics"]{display:block}
+
+    /* card surface: accent appears only as a thin left border */
+    .pane{
+      position:relative; max-width:none; margin:0;
+      padding:17px 40px 17px 17px;
+      border:none;
+      border-left:3px solid var(--ac,var(--accent));
+      border-bottom:1px solid var(--line-soft);
+      background:var(--surface);
+      cursor:pointer; -webkit-tap-highlight-color:transparent;
+      scroll-margin-top:calc(var(--barh,56px) + 8px);
+    }
+    .pane .kicker{display:none}
+    .pane h2{font-size:19px;line-height:1.15}
+    .pane .move{font-size:14.5px;color:var(--muted);margin-top:3px}
+
+    /* neutral expand chevron (kept off the accent) */
+    .pane::after{
+      content:""; position:absolute; right:16px; top:21px;
+      width:7px; height:7px;
+      border-right:1.6px solid var(--muted); border-bottom:1.6px solid var(--muted);
+      transform:rotate(45deg); opacity:.5;
+      transition:transform .3s cubic-bezier(.22,1,.36,1);
+    }
+    .pane.open::after{transform:rotate(-135deg)}
+
+    /* collapsible detail — max-height set inline by JS for a spring/ease open */
+    .card-collapse{
+      display:block; overflow:hidden; max-height:0; opacity:0;
+      transition:max-height .44s cubic-bezier(.22,1,.36,1), opacity .34s ease;
+    }
+    .pane.open .card-collapse{opacity:1}
+
+    .pane .desc{font-size:15px;margin-top:14px;line-height:1.6}
+    .pane .prof{margin-top:12px}
+    .pane .vs{margin-top:16px}
+    .pane .block{margin-top:18px}
+
+    @media (prefers-reduced-motion:reduce){
+      .card-collapse,.pane::after{transition:none}
+    }
   }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -516,8 +585,11 @@
   var bar=document.getElementById('bar');
   var groups=document.querySelectorAll('[data-view-list]');
   var allPanes=document.querySelectorAll('.pane');
+  var tabsEl=document.querySelector('.tabs');
   var tabA=document.getElementById('tab-approaches'), tabS=document.getElementById('tab-skeptics');
   var view='approaches';
+  var mq=window.matchMedia('(max-width:760px)');
+  function isMobile(){ return mq.matches; }
 
   // mark first pane of each view active so JS view-switch has a target
   document.getElementById('ap-0').classList.add('active');
@@ -526,30 +598,84 @@
   function listFor(v){ return document.querySelector('[data-view-list="'+v+'"]'); }
   function panesFor(v){ return document.querySelectorAll('.pane[data-view="'+v+'"]'); }
 
-  function activate(id){
-    allPanes.forEach(function(p){ p.classList.toggle('active', p.id===id); });
+  // Wrap each pane's detail (everything after its tagline) in a collapsible region.
+  // On desktop the wrapper is display:contents, so layout is unchanged.
+  Array.prototype.forEach.call(allPanes, function(p){
+    var move=p.querySelector('.move');
+    if(!move) return;
+    var wrap=document.createElement('div');
+    wrap.className='card-collapse';
+    var n=move.nextSibling;
+    while(n){ var nx=n.nextSibling; wrap.appendChild(n); n=nx; }
+    p.appendChild(wrap);
+    p.setAttribute('aria-expanded','false');
+  });
+
+  // Measure the locked top bar and expose its height so content can clear it.
+  function measureBar(){
+    if(!tabsEl) return;
+    var h=Math.round(tabsEl.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--barh', h+'px');
+  }
+
+  function markActive(id){
+    Array.prototype.forEach.call(allPanes, function(p){ p.classList.toggle('active', p.id===id); });
     var p=document.getElementById(id);
-    if(p){
-      bar.style.setProperty('--ac', p.getAttribute('data-ac'));
-      p.classList.remove('reveal'); void p.offsetWidth; p.classList.add('reveal');
-    }
-    var g=listFor(view), items=g.querySelectorAll('.item');
-    items.forEach(function(it){ it.setAttribute('aria-selected', it.getAttribute('data-target')===id); });
+    if(p) bar.style.setProperty('--ac', p.getAttribute('data-ac'));
+    var g=listFor(view);
+    g.querySelectorAll('.item').forEach(function(it){ it.setAttribute('aria-selected', it.getAttribute('data-target')===id); });
     var li=g.querySelector('.item[data-target="'+id+'"]');
-    if(li){ g.setAttribute('aria-activedescendant', li.id||''); }
-    if(ready){
-      var mobile = window.matchMedia && window.matchMedia('(max-width:720px)').matches;
-      if(mobile){ if(p && p.scrollIntoView) p.scrollIntoView({behavior:'smooth', block:'start'}); }
-      else if(li && li.scrollIntoView){ li.scrollIntoView({block:'nearest'}); }
+    if(li) g.setAttribute('aria-activedescendant', li.id||'');
+  }
+
+  // Desktop selection: mark + reveal animation + keep the list item in view.
+  function activate(id){
+    markActive(id);
+    var p=document.getElementById(id);
+    if(p){ p.classList.remove('reveal'); void p.offsetWidth; p.classList.add('reveal'); }
+    if(ready && !isMobile()){
+      var d=document.querySelector('.detail'); if(d) d.scrollTop=0;
+      var g=listFor(view), li=g.querySelector('.item[data-target="'+id+'"]');
+      if(li && li.scrollIntoView) li.scrollIntoView({block:'nearest'});
     }
   }
+
+  // Mobile card expand / collapse (spring/ease on height).
+  function collapse(p){
+    var c=p.querySelector('.card-collapse');
+    if(c) c.style.maxHeight='0px';
+    p.classList.remove('open');
+    p.setAttribute('aria-expanded','false');
+  }
+  function expand(p){
+    var c=p.querySelector('.card-collapse');
+    if(c) c.style.maxHeight=c.scrollHeight+'px';
+    p.classList.add('open');
+    p.setAttribute('aria-expanded','true');
+  }
+  function closeAllCards(){
+    Array.prototype.forEach.call(document.querySelectorAll('.pane.open'), collapse);
+  }
+  function onPaneClick(e){
+    if(!isMobile()) return;
+    if(e.target.closest('a')) return;          // let links inside an open card behave normally
+    var p=e.currentTarget;
+    if(p.classList.contains('open')){ collapse(p); return; }
+    Array.prototype.forEach.call(document.querySelectorAll('.pane.open'), function(o){ if(o!==p) collapse(o); });
+    expand(p);
+    setTimeout(function(){ if(p.scrollIntoView) p.scrollIntoView({behavior:'smooth', block:'start'}); }, 70);
+  }
+  Array.prototype.forEach.call(allPanes, function(p){ p.addEventListener('click', onPaneClick); });
 
   function setView(v){
     view=v;
     groups.forEach(function(g){ g.classList.toggle('active', g.getAttribute('data-view-list')===v); });
     tabA.setAttribute('aria-selected', v==='approaches');
     tabS.setAttribute('aria-selected', v==='skeptics');
-    activate(panesFor(v)[0].id);
+    document.body.classList.toggle('view-approaches', v==='approaches');
+    document.body.classList.toggle('view-skeptics', v==='skeptics');
+    if(isMobile()){ closeAllCards(); markActive(panesFor(v)[0].id); }
+    else { activate(panesFor(v)[0].id); }
   }
 
   tabA.addEventListener('click', function(){ setView('approaches'); });
@@ -570,6 +696,26 @@
     activate(items[nx].getAttribute('data-target'));
   });
 
+  // Recompute bar height (and any open card's height) on resize and after fonts load.
+  function refresh(){
+    measureBar();
+    var open=document.querySelector('.pane.open');
+    if(open){
+      var c=open.querySelector('.card-collapse');
+      if(c){ c.style.maxHeight='none'; var h=c.scrollHeight; c.style.maxHeight=h+'px'; }
+    }
+  }
+  window.addEventListener('resize', refresh);
+  function onMQ(){
+    refresh();
+    if(isMobile()){ closeAllCards(); }
+    else { activate(panesFor(view)[0].id); }
+  }
+  if(mq.addEventListener) mq.addEventListener('change', onMQ);
+  else if(mq.addListener) mq.addListener(onMQ);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(measureBar);
+
+  measureBar();
   setView('approaches');
   ready=true;
 })();
