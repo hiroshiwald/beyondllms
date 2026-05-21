@@ -1,0 +1,107 @@
+# AI beyond LLMs
+
+> A guide to AI systems being built beyond text-first chatbots: world models, hybrid agents, causal AI, learning by doing, and the researchers arguing for each. Source: https://hiroshiwald.github.io/beyondllms/
+
+## Approaches
+
+### World models — models the world, not just words about it
+A world model is an internal simulation of how things behave. It tracks what leads to what, and how a scene changes when you act on it. The machine learns this from observation and interaction, the way a child develops a sense of physics before she can name it. LeCun's JEPA architecture (Joint Embedding Predictive Architecture) is one specific technical bet on how to build it, training the system to predict the structure of a situation rather than reconstruct it pixel by pixel. The strongest evidence that world models work comes from physical robotics, where systems trained through hands-on interaction have proven more reliable than systems given language first and a body second. DeepMind's Genie 3 (2025) generates real-time interactive 3D environments from a text prompt. World Labs shipped Marble, its first commercial world model product, in November 2025. NVIDIA's Cosmos platform has been downloaded over two million times.
+What pure LLMs miss: LLMs train on text written about the world. They can describe a falling glass fluently, but their sense of physics is secondhand.
+What this adds: A world model can run a situation forward mentally before acting, the way you check a chess position before moving a piece.
+Lead thinkers: Yann LeCun, Fei-Fei Li
+Key reading: [A Path Towards Autonomous Machine Intelligence](https://openreview.net/forum?id=BZ5a1r-kVsf); [The Era of Experience](https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf)
+Who's building it: [World Labs](https://www.worldlabs.ai); [AMI Labs](https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/); [DeepMind Genie 3](https://deepmind.google/research/publications/genie-3/); [NVIDIA Cosmos](https://www.nvidia.com/en-us/ai/cosmos/)
+
+### Hybrid systems — uses other tools for what language can't do
+No single method handles everything. The near-term frontier connects language models to external tools like databases, calculators, search, code interpreters, and verification checks. The language model decides what to do next; the other components do the work it cannot. The two most-cited frameworks for this are ReAct (2022), which interleaves the model's reasoning steps with tool calls, and Toolformer (2023), which trains the model to call tools on its own initiative. Anthropic's Model Context Protocol (MCP) is the emerging standard for how tools and data sources plug in.
+What pure LLMs miss: A language model on its own is a fluent interface over patterns it has seen. Ask it to check its own arithmetic or remember last week's conversation and the gaps show quickly.
+What this adds: The language model handles language. Everything else is handled by something built for that task.
+Lead thinkers: Yoshua Bengio, Josh Tenenbaum, Gary Marcus
+Key reading: [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629); [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761); [Model Context Protocol](https://modelcontextprotocol.io)
+Who's building it: [OpenAI](https://openai.com); [Google DeepMind](https://deepmind.google); [Anthropic](https://www.anthropic.com)
+
+### Predict-and-act agents — acts on its own, instead of waiting to be asked
+One loop runs continuously. It predicts what comes next, compares that to what actually happens, and acts to close the gap. Karl Friston's free-energy principle formalises this as the basic logic of any adaptive system, whether brain, organism, or machine. The goal is an AI that seeks out information unprompted, not one that only responds when asked. VERSES is building software around it.
+What pure LLMs miss: Language models are reactive. They respond when prompted but do not maintain ongoing goals, track uncertainty over time, or seek out information on their own.
+What this adds: Goal, perception, prediction, and action all sit in one loop. The system reaches for information rather than waiting to be queried.
+Lead thinkers: Karl Friston
+Key reading: [Friston: the free-energy principle](https://www.nature.com/articles/nrn2787)
+Who's building it: [VERSES](https://www.verses.ai)
+
+### Program-building AI — works out the steps and tests them, instead of guessing
+A system that has memorised a lot is good at problems similar to ones it has seen. Chollet's argument is that real intelligence shows up on problems it has never encountered. His ARC-AGI benchmark tests this with grids of coloured tiles. Each puzzle gives a few examples of a rule, then asks the system to apply it to a new case. Frontier language models solved ARC-AGI-1 at high rates by late 2024. Chollet responded with harder versions. ARC-AGI-3, launched March 2026, requires agents to learn from live interaction inside each puzzle. Humans score 100%. AI scores below 1%.
+What pure LLMs miss: Language models perform well on problems close to their training data. Constructing a new solution procedure from scratch is a different skill.
+What this adds: The system produces a procedure and tests whether it works. Right or wrong is checkable, not just plausible-sounding.
+Lead thinkers: François Chollet
+Key reading: [On the Measure of Intelligence](https://arxiv.org/abs/1911.01547); [ARC-AGI-3 benchmark](https://arcprize.org)
+Who's building it: [Ndea](https://ndea.com)
+
+### Learning plus logic — finds patterns, then checks them against fixed rules
+A neural network notices patterns in messy, ambiguous data. A symbolic layer enforces explicit rules and does exact computation. Joining the two is called neurosymbolic AI. The neural side handles ambiguity; the symbolic side guarantees consistency. Neither alone is sufficient for tasks that require both.
+What pure LLMs miss: Language models have no hard rule layer. Logical consistency, precise arithmetic, and self-correction have to be bolted on from outside.
+What this adds: Answers can be checked against explicit constraints, not just judged by whether they sound right.
+Lead thinkers: Josh Tenenbaum, Gary Marcus
+Key reading: [How people learn from few examples](https://www.science.org/doi/10.1126/science.aab3050)
+Who's building it: [Elemental Cognition](https://ec.ai); [Symbolica AI](https://www.symbolica.ai)
+
+### Liquid networks — small networks that keep learning after they're trained
+Standard neural networks are fixed after training. Liquid neural networks have internal dynamics that keep shifting as new inputs arrive. This makes them useful when data comes as a live stream rather than a static snapshot, as with sensors, vehicles, and real-time control systems. The architecture originated at MIT in robotics research. Liquid AI, the company behind it, has since expanded into general-purpose models.
+What pure LLMs miss: Large models are expensive to retrain and often too heavy for real-time, low-power settings like sensors or vehicles.
+What this adds: Compact and continuously responsive. The network adapts to the stream rather than treating each input as independent.
+Lead thinkers: Ramin Hasani, Daniela Rus
+Key reading: [Liquid time-constant networks](https://arxiv.org/abs/2006.04439)
+Who's building it: [Liquid AI](https://www.liquid.ai)
+
+### Brain-inspired AI — many small low-power models, not one giant network
+Jeff Hawkins' Thousand Brains theory holds that the cortex runs thousands of small models in parallel, each building its own map of its piece of the world. Intelligence emerges from their coordination, not from one large centralised network. In January 2025, Numenta spun the Thousand Brains Project out as an independent nonprofit to pursue this research. A related hardware strand, neuromorphic chips, tries to replicate the brain's sparse, event-driven signalling to cut energy use dramatically.
+What pure LLMs miss: Today's large models train once, at enormous energy cost, and struggle to learn continuously from new data without forgetting what they already know.
+What this adds: Many small, distributed models; sparse computation; low power. Closer in structure to what biology actually does.
+Lead thinkers: Jeff Hawkins
+Key reading: [A Framework for Intelligence and Cortical Function](https://www.frontiersin.org/articles/10.3389/fncir.2018.00121/full)
+Who's building it: [Thousand Brains Project](https://thousandbrains.org); [BrainChip](https://brainchip.com)
+
+### Learning by doing — learns from doing, not from human text
+The system generates its own training data by acting in an environment and observing what happens. AlphaZero is the proof of concept. It played games against itself until it found strategies no human had written down. Sutton and Silver's 2025 paper argues this loop is the missing ingredient for capable AI. The ceiling on text-trained models is set by what humans have documented. Experience-based learning has no such ceiling.
+What pure LLMs miss: Models trained on human text inherit the limits of what humans have written. They cannot discover things no one has described.
+What this adds: The system can find strategies that were never in any document, because it learns from outcomes rather than from descriptions of outcomes.
+Lead thinkers: Richard Sutton, David Silver
+Key reading: [The Era of Experience](https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf); [The Bitter Lesson](http://incompleteideas.net/IncIdeas/BitterLesson.html)
+Who's building it: [Keen Technologies](https://dallasinnovates.com/john-carmacks-keen-technologies-partners-to-accelerate-development-of-artificial-general-intelligence/); [Amii](https://www.amii.ca)
+
+### Cause-and-effect AI — knows what causes what, not just what occurs together
+Two things can be correlated without one causing the other. Causal AI maps which variables actually drive which outcomes, so its conclusions hold when circumstances change. Judea Pearl formalised the mathematics of causation; the field is now moving into enterprise software. The practical payoff is the ability to answer intervention questions. If we change X, what happens to Y?
+What pure LLMs miss: Language models learn that things appear together in text. That is not the same as knowing which lever, when pulled, actually changes the outcome.
+What this adds: Causal models separate correlation from mechanism, so they can support decisions about what to do, not just descriptions of what has happened.
+Lead thinkers: Judea Pearl, Elias Bareinboim, Bernhard Schölkopf, Yoshua Bengio
+Key reading: [The Book of Why](http://bayes.cs.ucla.edu/WHY/); [Towards Causal Representation Learning](https://arxiv.org/abs/2102.11107)
+Who's building it: [causaLens (decisionOS)](https://causalens.com); [Causal AI Lab, Columbia](https://causalai.net)
+
+## Post-LLM theorists
+
+### Richard Sutton — pioneer of learn-by-reward AI · 2024 Turing Award (shared with Andrew Barto)
+Systems trained on human text are capped by human data. Sutton's argument, made formally in The Bitter Lesson, is that the only reliable path forward is experience. Agents generate their own evidence by acting in the world and observing what happens.
+Read: [Interview](https://www.dwarkesh.com/p/richard-sutton); [The Bitter Lesson](http://incompleteideas.net/IncIdeas/BitterLesson.html)
+
+### Yann LeCun — co-founder and chairman, AMI Labs · former chief AI scientist at Meta
+Predicting the next word cannot teach a machine the physical structure of the world. LeCun's position is that intelligence requires a model of how things behave, built from observation and action. He left Meta in late 2025 to build this, co-founding AMI Labs with $1.03B in funding.
+Read: [A Path Towards Autonomous Machine Intelligence](https://openreview.net/forum?id=BZ5a1r-kVsf)
+
+### Gary Marcus — cognitive scientist and author
+Larger networks have not fixed the reliability problems. Marcus's case is that fluency is not understanding, and that without explicit knowledge and verification the errors will keep coming regardless of scale.
+Read: [Deep Learning Is Hitting a Wall](https://nautil.us/deep-learning-is-hitting-a-wall-238440/)
+
+### François Chollet — built Keras and the ARC-AGI benchmark · founder, Ndea
+A system that has memorised a lot is not the same as a system that can figure out something new. Chollet's ARC-AGI benchmark was built to make that distinction testable. Frontier models saturated ARC-AGI-1 by late 2024. He responded with ARC-AGI-3 (March 2026), interactive puzzles that require learning from live experience. AI scores below 1%. Humans score 100%.
+Read: [On the Measure of Intelligence](https://arxiv.org/abs/1911.01547); [ARC-AGI-3 benchmark](https://arcprize.org)
+
+### Judea Pearl — Turing Award · cause-and-effect pioneer
+Pattern recognition and causal reasoning are different things. A system can learn that smoking and cancer appear together in data without understanding that one causes the other, or knowing what would happen if you intervened.
+Read: [The Book of Why](http://bayes.cs.ucla.edu/WHY/)
+
+### Bernhard Schölkopf — director, Max Planck Institute for Intelligent Systems
+Models that learn correlations from a fixed dataset become unreliable when real-world conditions shift, whether a different hospital, a different market, or a different country. Schölkopf's work is on building in causal structure so models do not break when the setting changes.
+Read: [Towards Causal Representation Learning](https://arxiv.org/abs/2102.11107)
+
+### Yoshua Bengio — Turing Award · leads the Mila AI institute
+Fast pattern completion is not deliberate reasoning. In a 2019 NeurIPS keynote that shaped much of the subsequent debate, Bengio argued that reliable AI needs the capacity for slower, structured thought, built from explicit goals, variables, and causal chains.
+Read: [From System 1 to System 2 Deep Learning](https://youtu.be/T3sxeTgT4qc)

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI beyond LLMs &mdash; world models, hybrid agents, causal AI</title>
+<meta name="description" content="A clickable guide to AI systems being built beyond text-first chatbots: world models, causal AI, learning by doing, hybrid agents, and the researchers arguing for each.">
+<link rel="canonical" href="https://hiroshiwald.github.io/beyondllms/">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hiroshiwald.github.io/beyondllms/">
+<meta property="og:title" content="AI beyond LLMs">
+<meta property="og:description" content="The missing machinery beyond text-first chatbots: grounding, causality, memory, action, and experience.">
+<meta property="og:site_name" content="AI beyond LLMs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI beyond LLMs">
+<meta name="twitter:description" content="The missing machinery beyond text-first chatbots: grounding, causality, memory, action, and experience.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "AI beyond LLMs",
+  "description": "A guide to AI systems being built beyond text-first chatbots: world models, hybrid agents, causal AI, learning by doing, and the researchers arguing for each.",
+  "url": "https://hiroshiwald.github.io/beyondllms/",
+  "inLanguage": "en",
+  "dateModified": "2026-05-21",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "AI approaches beyond large language models",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Thing",
+          "name": "World models",
+          "description": "models the world, not just words about it"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Thing",
+          "name": "Hybrid systems",
+          "description": "uses other tools for what language can't do"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Thing",
+          "name": "Predict-and-act agents",
+          "description": "acts on its own, instead of waiting to be asked"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Thing",
+          "name": "Program-building AI",
+          "description": "works out the steps and tests them, instead of guessing"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Thing",
+          "name": "Learning plus logic",
+          "description": "finds patterns, then checks them against fixed rules"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Thing",
+          "name": "Liquid networks",
+          "description": "small networks that keep learning after they're trained"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "Thing",
+          "name": "Brain-inspired AI",
+          "description": "many small low-power models, not one giant network"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "Thing",
+          "name": "Learning by doing",
+          "description": "learns from doing, not from human text"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "item": {
+          "@type": "Thing",
+          "name": "Cause-and-effect AI",
+          "description": "knows what causes what, not just what occurs together"
+        }
+      }
+    ]
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Artificial intelligence"
+    },
+    {
+      "@type": "Thing",
+      "name": "Machine learning"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Researchers arguing for AI beyond LLMs",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Person",
+        "name": "Richard Sutton",
+        "url": "http://incompleteideas.net/",
+        "description": "pioneer of learn-by-reward AI · 2024 Turing Award (shared with Andrew Barto)"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Person",
+        "name": "Yann LeCun",
+        "url": "https://yann.lecun.com/",
+        "description": "co-founder and chairman, AMI Labs · former chief AI scientist at Meta"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Person",
+        "name": "Gary Marcus",
+        "url": "https://garymarcus.substack.com/",
+        "description": "cognitive scientist and author"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Person",
+        "name": "François Chollet",
+        "url": "https://fchollet.com/",
+        "description": "built Keras and the ARC-AGI benchmark · founder, Ndea"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Person",
+        "name": "Judea Pearl",
+        "url": "http://bayes.cs.ucla.edu/jp_home.html",
+        "description": "Turing Award · cause-and-effect pioneer"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Person",
+        "name": "Bernhard Schölkopf",
+        "url": "https://ei.is.mpg.de/person/bs",
+        "description": "director, Max Planck Institute for Intelligent Systems"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Person",
+        "name": "Yoshua Bengio",
+        "url": "https://yoshuabengio.org/",
+        "description": "Turing Award · leads the Mila AI institute"
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Spline+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff; --surface:#ffffff; --tint:#f3f4f6; --ink:#1b1916; --muted:#403d37; --accent:#2f6bb0;
+    --line:rgba(27,25,22,.14); --line-soft:rgba(27,25,22,.06);
+    --serif:"Newsreader",Georgia,serif; --sans:"Spline Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.5}
+  ::selection{background:var(--accent);color:#fff}
+
+  .app{height:100%;max-width:1080px;margin:0 auto;padding:34px 28px 22px;display:flex;flex-direction:column;min-height:640px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:22px}
+  .title h1{font-family:var(--serif);font-weight:500;font-size:31px;letter-spacing:-.01em;line-height:1.05;color:var(--ink)}
+  .title p{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:16px;margin-top:5px}
+  .tabs{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+  .tab{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.03em;color:var(--muted);background:none;border:none;cursor:pointer;padding:7px 16px;border-radius:999px;transition:color .25s,background .25s}
+  .tab[aria-selected="true"]{background:var(--ink);color:#fff}
+
+  main{flex:1;display:grid;grid-template-columns:300px 1fr;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden;min-height:0}
+  .list{border-right:1px solid var(--line);overflow-y:auto;padding:8px 0;outline:none;}
+  .list::-webkit-scrollbar,.detail::-webkit-scrollbar{width:8px}
+  .list::-webkit-scrollbar-thumb,.detail::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  .item{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:13px 18px 13px 16px;border-left:2px solid transparent;display:flex;align-items:baseline;gap:11px;transition:background .2s,border-color .2s;font-family:var(--sans)}
+  .item:hover{background:var(--line-soft)}
+  .item .dot{width:7px;height:7px;border-radius:50%;flex:none;transform:translateY(-1px);background:var(--ac,var(--accent));opacity:.8;transition:opacity .2s}
+  .item .nm{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+  .item .sub{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.01em}
+  .item[aria-selected="true"]{background:var(--tint);border-left-color:var(--ac,var(--accent))}
+  .item[aria-selected="true"] .dot{opacity:1}
+  .item[aria-selected="true"] .nm{font-weight:600}
+
+  .detail{position:relative;overflow-y:auto}
+  .bar{height:3px;background:var(--ac,var(--accent));transition:background .35s}
+  .pane{padding:34px 38px 42px;max-width:620px}
+  .kicker{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ac,var(--accent));margin-bottom:12px}
+  .pane h2{font-family:var(--serif);font-weight:500;font-size:28px;letter-spacing:-.015em;line-height:1.1;color:var(--ink)}
+  .move{font-family:var(--serif);font-style:italic;color:var(--ac,var(--accent));font-size:17px;margin-top:8px;line-height:1.35}
+  .prof{display:inline-flex;gap:6px;align-items:baseline;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--ac,var(--accent));text-decoration:none;margin-top:11px;border-bottom:1px solid transparent;transition:border-color .2s;position:relative;z-index:2;}
+  .prof:hover{border-bottom-color:var(--ac,var(--accent))}
+  .desc{font-size:16px;color:var(--ink);margin-top:20px;line-height:1.62}
+
+  .vs{margin-top:24px;display:flex;flex-direction:column;gap:2px}
+  .vs .row{border-left:3px solid var(--ac,var(--accent));background:var(--tint);padding:14px 17px}
+  .vs .row.wrong{border-radius:9px 9px 0 0;border-left-color:#9a3824}
+  .vs .row.fix{border-radius:0 0 9px 9px}
+  .vs .row .l{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+  .vs .row.wrong .l{color:#9a3824}
+  .vs .row.fix .l{color:var(--ac,var(--accent))}
+  .vs .row p{font-size:14.5px;color:var(--ink);line-height:1.55}
+
+  .block{margin-top:26px}
+  .block .lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ac,var(--accent));margin-bottom:10px}
+  .people{display:flex;flex-wrap:wrap;gap:7px}
+  a.chip{position:relative;z-index:2;font-size:13.5px;font-weight:500;color:var(--ink);background:var(--tint);border:1px solid var(--line);border-radius:7px;padding:5px 11px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:color .2s,border-color .2s}
+  a.chip::after{content:"\2197";font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ac,var(--accent))}
+  a.chip:hover{color:var(--ac,var(--accent));border-color:var(--ac,var(--accent))}
+  .links{display:flex;flex-direction:column;gap:2px}
+  a.lnk{position:relative;z-index:2;display:inline-flex;align-items:baseline;gap:8px;color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;padding:6px 0;width:fit-content;cursor:pointer;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+  a.lnk .ar{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ac,var(--accent));transition:transform .2s}
+  a.lnk:hover{color:var(--ac,var(--accent));border-bottom-color:var(--ac,var(--accent))}
+  a.lnk:hover .ar{transform:translateX(3px)}
+  .src{font-family:var(--mono);font-size:11px;color:var(--ac,var(--accent));margin-left:4px;pointer-events:none;}
+
+  footer{margin-top:16px;display:flex;gap:12px;align-items:baseline;font-size:13.5px;color:var(--ink);padding:0 4px}
+  footer b{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+  footer span{font-family:var(--serif);font-style:italic;color:var(--ink)}
+
+  .noscript{margin-top:18px;border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:var(--surface);color:var(--ink)}
+  .noscript h2{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.01em;margin-bottom:8px}
+  .noscript p{font-size:14.5px;line-height:1.6;color:var(--muted);margin-bottom:10px}
+  .noscript ul{padding-left:18px;font-size:14px;line-height:1.7;color:var(--ink)}
+
+  .reveal{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none}}
+
+  @media (max-width:720px){
+    .app{padding:24px 16px;height:auto;min-height:0}
+    main{grid-template-columns:1fr}
+    .list{border-right:none;border-bottom:1px solid var(--line);max-height:220px;box-shadow:inset 0 -12px 10px -10px rgba(0,0,0,0.08);}
+    .pane{padding:26px 22px 32px}
+    .title h1{font-size:25px}
+  }
+
+
+  /* progressive enhancement: only switch to single-pane app behaviour once JS marks the doc */
+  a.item{text-decoration:none;color:inherit}
+  .js [data-view-list]{display:none}
+  .js [data-view-list].active{display:block}
+  .js .pane{display:none}
+  .js .pane.active{display:block}
+  /* no-JS / crawler view: every pane readable, gently separated */
+  html:not(.js) .pane + .pane{border-top:1px solid var(--line);margin-top:6px}
+  html:not(.js) .list-note{display:block}
+  .list-note{display:none;font-family:var(--mono);font-size:10.5px;color:var(--muted);padding:8px 16px;letter-spacing:.04em}
+
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="title">
+      <h1>AI beyond LLMs</h1>
+      <p>alternative approaches to AI</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="views">
+      <button class="tab" id="tab-approaches" role="tab" aria-selected="true">approaches</button>
+      <button class="tab" id="tab-skeptics" role="tab" aria-selected="false">post-LLM theorists</button>
+    </div>
+  </header>
+  <main>
+    <div class="list" id="list" role="listbox" tabindex="0" aria-label="items">
+      <div class="list-group active" data-view-list="approaches">
+        <div class="list-note">Approaches</div>
+        <a class="item" href="#ap-0" data-target="ap-0" role="option" style="--ac:#2f6bb0" aria-selected="true"><span class="dot"></span><span><span class="nm">World models</span><span class="sub">models the world, not just words about it</span></span></a><a class="item" href="#ap-1" data-target="ap-1" role="option" style="--ac:#5c6270" aria-selected="false"><span class="dot"></span><span><span class="nm">Hybrid systems</span><span class="sub">uses other tools for what language can't do</span></span></a><a class="item" href="#ap-2" data-target="ap-2" role="option" style="--ac:#3f7a52" aria-selected="false"><span class="dot"></span><span><span class="nm">Predict-and-act agents</span><span class="sub">acts on its own, instead of waiting to be asked</span></span></a><a class="item" href="#ap-3" data-target="ap-3" role="option" style="--ac:#8a5a25" aria-selected="false"><span class="dot"></span><span><span class="nm">Program-building AI</span><span class="sub">works out the steps and tests them, instead of guessing</span></span></a><a class="item" href="#ap-4" data-target="ap-4" role="option" style="--ac:#6a4880" aria-selected="false"><span class="dot"></span><span><span class="nm">Learning plus logic</span><span class="sub">finds patterns, then checks them against fixed rules</span></span></a><a class="item" href="#ap-5" data-target="ap-5" role="option" style="--ac:#1f7a7a" aria-selected="false"><span class="dot"></span><span><span class="nm">Liquid networks</span><span class="sub">small networks that keep learning after they're trained</span></span></a><a class="item" href="#ap-6" data-target="ap-6" role="option" style="--ac:#9a4630" aria-selected="false"><span class="dot"></span><span><span class="nm">Brain-inspired AI</span><span class="sub">many small low-power models, not one giant network</span></span></a><a class="item" href="#ap-7" data-target="ap-7" role="option" style="--ac:#4d5c30" aria-selected="false"><span class="dot"></span><span><span class="nm">Learning by doing</span><span class="sub">learns from doing, not from human text</span></span></a><a class="item" href="#ap-8" data-target="ap-8" role="option" style="--ac:#8a2f56" aria-selected="false"><span class="dot"></span><span><span class="nm">Cause-and-effect AI</span><span class="sub">knows what causes what, not just what occurs together</span></span></a>
+      </div>
+      <div class="list-group" data-view-list="skeptics">
+        <div class="list-note">Post-LLM theorists</div>
+        <a class="item" href="#sk-0" data-target="sk-0" role="option" style="--ac:#4d5c30" aria-selected="false"><span class="dot"></span><span><span class="nm">Richard Sutton</span><span class="sub">pioneer of learn-by-reward AI</span></span></a><a class="item" href="#sk-1" data-target="sk-1" role="option" style="--ac:#2f6bb0" aria-selected="false"><span class="dot"></span><span><span class="nm">Yann LeCun</span><span class="sub">co-founder and chairman, AMI Labs</span></span></a><a class="item" href="#sk-2" data-target="sk-2" role="option" style="--ac:#6a4880" aria-selected="false"><span class="dot"></span><span><span class="nm">Gary Marcus</span><span class="sub">cognitive scientist and author</span></span></a><a class="item" href="#sk-3" data-target="sk-3" role="option" style="--ac:#8a5a25" aria-selected="false"><span class="dot"></span><span><span class="nm">François Chollet</span><span class="sub">built Keras and the ARC-AGI benchmark</span></span></a><a class="item" href="#sk-4" data-target="sk-4" role="option" style="--ac:#8a2f56" aria-selected="false"><span class="dot"></span><span><span class="nm">Judea Pearl</span><span class="sub">Turing Award</span></span></a><a class="item" href="#sk-5" data-target="sk-5" role="option" style="--ac:#1f7a7a" aria-selected="false"><span class="dot"></span><span><span class="nm">Bernhard Schölkopf</span><span class="sub">director, Max Planck Institute for Intelligent Systems</span></span></a><a class="item" href="#sk-6" data-target="sk-6" role="option" style="--ac:#3f7a52" aria-selected="false"><span class="dot"></span><span><span class="nm">Yoshua Bengio</span><span class="sub">Turing Award</span></span></a>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="bar" id="bar"></div>
+      <div class="panes" id="panes">
+        <article class="pane entry" id="ap-0" data-view="approaches" data-ac="#2f6bb0" style="--ac:#2f6bb0">
+  <div class="kicker">approach 01 / 09</div>
+  <h2>World models</h2>
+  <div class="move">models the world, not just words about it</div>
+  <p class="desc">A world model is an internal simulation of how things behave. It tracks what leads to what, and how a scene changes when you act on it. The machine learns this from observation and interaction, the way a child develops a sense of physics before she can name it. LeCun's JEPA architecture (Joint Embedding Predictive Architecture) is one specific technical bet on how to build it, training the system to predict the structure of a situation rather than reconstruct it pixel by pixel. The strongest evidence that world models work comes from physical robotics, where systems trained through hands-on interaction have proven more reliable than systems given language first and a body second. DeepMind's Genie 3 (2025) generates real-time interactive 3D environments from a text prompt. World Labs shipped Marble, its first commercial world model product, in November 2025. NVIDIA's Cosmos platform has been downloaded over two million times.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>LLMs train on text written about the world. They can describe a falling glass fluently, but their sense of physics is secondhand.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>A world model can run a situation forward mentally before acting, the way you check a chess position before moving a piece.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="https://yann.lecun.com/" target="_blank" rel="noopener noreferrer">Yann LeCun</a><a class="chip" href="https://profiles.stanford.edu/fei-fei-li" target="_blank" rel="noopener noreferrer">Fei-Fei Li</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://openreview.net/forum?id=BZ5a1r-kVsf" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>A Path Towards Autonomous Machine Intelligence</span><span class="src">LeCun · 2022</span></a><a class="lnk" href="https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>The Era of Experience</span><span class="src">Silver &amp; Sutton · 2025</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://www.worldlabs.ai" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>World Labs</span><span class="src">Fei-Fei Li · Marble (2025)</span></a><a class="lnk" href="https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>AMI Labs</span><span class="src">LeCun · $1B · 2026</span></a><a class="lnk" href="https://deepmind.google/research/publications/genie-3/" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>DeepMind Genie 3</span><span class="src">Google · 2025</span></a><a class="lnk" href="https://www.nvidia.com/en-us/ai/cosmos/" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>NVIDIA Cosmos</span></a></div></div>
+</article><article class="pane entry" id="ap-1" data-view="approaches" data-ac="#5c6270" style="--ac:#5c6270">
+  <div class="kicker">approach 02 / 09</div>
+  <h2>Hybrid systems</h2>
+  <div class="move">uses other tools for what language can't do</div>
+  <p class="desc">No single method handles everything. The near-term frontier connects language models to external tools like databases, calculators, search, code interpreters, and verification checks. The language model decides what to do next; the other components do the work it cannot. The two most-cited frameworks for this are ReAct (2022), which interleaves the model's reasoning steps with tool calls, and Toolformer (2023), which trains the model to call tools on its own initiative. Anthropic's Model Context Protocol (MCP) is the emerging standard for how tools and data sources plug in.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>A language model on its own is a fluent interface over patterns it has seen. Ask it to check its own arithmetic or remember last week's conversation and the gaps show quickly.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>The language model handles language. Everything else is handled by something built for that task.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="https://yoshuabengio.org/" target="_blank" rel="noopener noreferrer">Yoshua Bengio</a><a class="chip" href="https://web.mit.edu/cocosci/josh.html" target="_blank" rel="noopener noreferrer">Josh Tenenbaum</a><a class="chip" href="https://garymarcus.substack.com/" target="_blank" rel="noopener noreferrer">Gary Marcus</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>ReAct: Synergizing Reasoning and Acting in Language Models</span><span class="src">Yao et al. · 2022</span></a><a class="lnk" href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Toolformer: Language Models Can Teach Themselves to Use Tools</span><span class="src">Schick et al. · 2023</span></a><a class="lnk" href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Model Context Protocol</span><span class="src">Anthropic · 2024</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://openai.com" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>OpenAI</span></a><a class="lnk" href="https://deepmind.google" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Google DeepMind</span></a><a class="lnk" href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Anthropic</span></a></div></div>
+</article><article class="pane entry" id="ap-2" data-view="approaches" data-ac="#3f7a52" style="--ac:#3f7a52">
+  <div class="kicker">approach 03 / 09</div>
+  <h2>Predict-and-act agents</h2>
+  <div class="move">acts on its own, instead of waiting to be asked</div>
+  <p class="desc">One loop runs continuously. It predicts what comes next, compares that to what actually happens, and acts to close the gap. Karl Friston's free-energy principle formalises this as the basic logic of any adaptive system, whether brain, organism, or machine. The goal is an AI that seeks out information unprompted, not one that only responds when asked. VERSES is building software around it.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>Language models are reactive. They respond when prompted but do not maintain ongoing goals, track uncertainty over time, or seek out information on their own.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>Goal, perception, prediction, and action all sit in one loop. The system reaches for information rather than waiting to be queried.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="https://profiles.ucl.ac.uk/10131" target="_blank" rel="noopener noreferrer">Karl Friston</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://www.nature.com/articles/nrn2787" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Friston: the free-energy principle</span><span class="src">Nature Reviews Neuroscience · 2010</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://www.verses.ai" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>VERSES</span></a></div></div>
+</article><article class="pane entry" id="ap-3" data-view="approaches" data-ac="#8a5a25" style="--ac:#8a5a25">
+  <div class="kicker">approach 04 / 09</div>
+  <h2>Program-building AI</h2>
+  <div class="move">works out the steps and tests them, instead of guessing</div>
+  <p class="desc">A system that has memorised a lot is good at problems similar to ones it has seen. Chollet's argument is that real intelligence shows up on problems it has never encountered. His ARC-AGI benchmark tests this with grids of coloured tiles. Each puzzle gives a few examples of a rule, then asks the system to apply it to a new case. Frontier language models solved ARC-AGI-1 at high rates by late 2024. Chollet responded with harder versions. ARC-AGI-3, launched March 2026, requires agents to learn from live interaction inside each puzzle. Humans score 100%. AI scores below 1%.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>Language models perform well on problems close to their training data. Constructing a new solution procedure from scratch is a different skill.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>The system produces a procedure and tests whether it works. Right or wrong is checkable, not just plausible-sounding.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="https://fchollet.com/" target="_blank" rel="noopener noreferrer">François Chollet</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://arxiv.org/abs/1911.01547" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>On the Measure of Intelligence</span><span class="src">Chollet · 2019</span></a><a class="lnk" href="https://arcprize.org" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>ARC-AGI-3 benchmark</span><span class="src">2026</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://ndea.com" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Ndea</span><span class="src">Chollet · research stage</span></a></div></div>
+</article><article class="pane entry" id="ap-4" data-view="approaches" data-ac="#6a4880" style="--ac:#6a4880">
+  <div class="kicker">approach 05 / 09</div>
+  <h2>Learning plus logic</h2>
+  <div class="move">finds patterns, then checks them against fixed rules</div>
+  <p class="desc">A neural network notices patterns in messy, ambiguous data. A symbolic layer enforces explicit rules and does exact computation. Joining the two is called neurosymbolic AI. The neural side handles ambiguity; the symbolic side guarantees consistency. Neither alone is sufficient for tasks that require both.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>Language models have no hard rule layer. Logical consistency, precise arithmetic, and self-correction have to be bolted on from outside.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>Answers can be checked against explicit constraints, not just judged by whether they sound right.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="https://web.mit.edu/cocosci/josh.html" target="_blank" rel="noopener noreferrer">Josh Tenenbaum</a><a class="chip" href="https://garymarcus.substack.com/" target="_blank" rel="noopener noreferrer">Gary Marcus</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://www.science.org/doi/10.1126/science.aab3050" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>How people learn from few examples</span><span class="src">Science</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://ec.ai" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Elemental Cognition</span></a><a class="lnk" href="https://www.symbolica.ai" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Symbolica AI</span></a></div></div>
+</article><article class="pane entry" id="ap-5" data-view="approaches" data-ac="#1f7a7a" style="--ac:#1f7a7a">
+  <div class="kicker">approach 06 / 09</div>
+  <h2>Liquid networks</h2>
+  <div class="move">small networks that keep learning after they're trained</div>
+  <p class="desc">Standard neural networks are fixed after training. Liquid neural networks have internal dynamics that keep shifting as new inputs arrive. This makes them useful when data comes as a live stream rather than a static snapshot, as with sensors, vehicles, and real-time control systems. The architecture originated at MIT in robotics research. Liquid AI, the company behind it, has since expanded into general-purpose models.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>Large models are expensive to retrain and often too heavy for real-time, low-power settings like sensors or vehicles.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>Compact and continuously responsive. The network adapts to the stream rather than treating each input as independent.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="https://ramin-hasani.github.io/" target="_blank" rel="noopener noreferrer">Ramin Hasani</a><a class="chip" href="https://www.csail.mit.edu/person/daniela-rus" target="_blank" rel="noopener noreferrer">Daniela Rus</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://arxiv.org/abs/2006.04439" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Liquid time-constant networks</span><span class="src">2020</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://www.liquid.ai" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Liquid AI</span><span class="src">$250M · 2024</span></a></div></div>
+</article><article class="pane entry" id="ap-6" data-view="approaches" data-ac="#9a4630" style="--ac:#9a4630">
+  <div class="kicker">approach 07 / 09</div>
+  <h2>Brain-inspired AI</h2>
+  <div class="move">many small low-power models, not one giant network</div>
+  <p class="desc">Jeff Hawkins' Thousand Brains theory holds that the cortex runs thousands of small models in parallel, each building its own map of its piece of the world. Intelligence emerges from their coordination, not from one large centralised network. In January 2025, Numenta spun the Thousand Brains Project out as an independent nonprofit to pursue this research. A related hardware strand, neuromorphic chips, tries to replicate the brain's sparse, event-driven signalling to cut energy use dramatically.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>Today's large models train once, at enormous energy cost, and struggle to learn continuously from new data without forgetting what they already know.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>Many small, distributed models; sparse computation; low power. Closer in structure to what biology actually does.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="https://www.numenta.com/people/jeff-hawkins/" target="_blank" rel="noopener noreferrer">Jeff Hawkins</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://www.frontiersin.org/articles/10.3389/fncir.2018.00121/full" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>A Framework for Intelligence and Cortical Function</span><span class="src">Hawkins et al. · 2019</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://thousandbrains.org" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Thousand Brains Project</span><span class="src">nonprofit · spun out 2025</span></a><a class="lnk" href="https://brainchip.com" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>BrainChip</span><span class="src">neuromorphic chips</span></a></div></div>
+</article><article class="pane entry" id="ap-7" data-view="approaches" data-ac="#4d5c30" style="--ac:#4d5c30">
+  <div class="kicker">approach 08 / 09</div>
+  <h2>Learning by doing</h2>
+  <div class="move">learns from doing, not from human text</div>
+  <p class="desc">The system generates its own training data by acting in an environment and observing what happens. AlphaZero is the proof of concept. It played games against itself until it found strategies no human had written down. Sutton and Silver's 2025 paper argues this loop is the missing ingredient for capable AI. The ceiling on text-trained models is set by what humans have documented. Experience-based learning has no such ceiling.</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>Models trained on human text inherit the limits of what humans have written. They cannot discover things no one has described.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>The system can find strategies that were never in any document, because it learns from outcomes rather than from descriptions of outcomes.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="http://incompleteideas.net/" target="_blank" rel="noopener noreferrer">Richard Sutton</a><a class="chip" href="https://www.davidsilver.uk/" target="_blank" rel="noopener noreferrer">David Silver</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>The Era of Experience</span><span class="src">Silver &amp; Sutton · 2025</span></a><a class="lnk" href="http://incompleteideas.net/IncIdeas/BitterLesson.html" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>The Bitter Lesson</span><span class="src">Sutton · 2019</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://dallasinnovates.com/john-carmacks-keen-technologies-partners-to-accelerate-development-of-artificial-general-intelligence/" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Keen Technologies</span><span class="src">Carmack · Sutton</span></a><a class="lnk" href="https://www.amii.ca" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Amii</span></a></div></div>
+</article><article class="pane entry" id="ap-8" data-view="approaches" data-ac="#8a2f56" style="--ac:#8a2f56">
+  <div class="kicker">approach 09 / 09</div>
+  <h2>Cause-and-effect AI</h2>
+  <div class="move">knows what causes what, not just what occurs together</div>
+  <p class="desc">Two things can be correlated without one causing the other. Causal AI maps which variables actually drive which outcomes, so its conclusions hold when circumstances change. Judea Pearl formalised the mathematics of causation; the field is now moving into enterprise software. The practical payoff is the ability to answer intervention questions. If we change X, what happens to Y?</p>
+  <div class="vs">
+    <div class="row wrong"><div class="l">What pure LLMs miss</div><p>Language models learn that things appear together in text. That is not the same as knowing which lever, when pulled, actually changes the outcome.</p></div>
+    <div class="row fix"><div class="l">What this adds</div><p>Causal models separate correlation from mechanism, so they can support decisions about what to do, not just descriptions of what has happened.</p></div>
+  </div>
+  <div class="block"><div class="lbl">Lead thinkers</div><div class="people"><a class="chip" href="http://bayes.cs.ucla.edu/jp_home.html" target="_blank" rel="noopener noreferrer">Judea Pearl</a><a class="chip" href="https://causalai.net" target="_blank" rel="noopener noreferrer">Elias Bareinboim</a><a class="chip" href="https://ei.is.mpg.de/person/bs" target="_blank" rel="noopener noreferrer">Bernhard Schölkopf</a><a class="chip" href="https://yoshuabengio.org/" target="_blank" rel="noopener noreferrer">Yoshua Bengio</a></div></div>
+  <div class="block"><div class="lbl">Key reading</div><div class="links"><a class="lnk" href="http://bayes.cs.ucla.edu/WHY/" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>The Book of Why</span><span class="src">Pearl</span></a><a class="lnk" href="https://arxiv.org/abs/2102.11107" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Towards Causal Representation Learning</span><span class="src">Schölkopf et al. · 2021</span></a></div></div>
+  <div class="block"><div class="lbl">Who's building it</div><div class="links"><a class="lnk" href="https://causalens.com" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>causaLens (decisionOS)</span></a><a class="lnk" href="https://causalai.net" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Causal AI Lab, Columbia</span><span class="src">Bareinboim</span></a></div></div>
+</article>
+        <article class="pane entry" id="sk-0" data-view="skeptics" data-ac="#4d5c30" style="--ac:#4d5c30">
+  <div class="kicker">post-LLM theorist 01 / 07</div>
+  <h2>Richard Sutton</h2>
+  <div class="move">pioneer of learn-by-reward AI · 2024 Turing Award (shared with Andrew Barto)</div>
+  <a class="prof" href="http://incompleteideas.net/" target="_blank" rel="noopener noreferrer">profile &#8599;</a>
+  <p class="desc">Systems trained on human text are capped by human data. Sutton's argument, made formally in The Bitter Lesson, is that the only reliable path forward is experience. Agents generate their own evidence by acting in the world and observing what happens.</p>
+  <div class="block"><div class="lbl">Read</div><div class="links"><a class="lnk" href="https://www.dwarkesh.com/p/richard-sutton" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Interview</span><span class="src">Dwarkesh</span></a><a class="lnk" href="http://incompleteideas.net/IncIdeas/BitterLesson.html" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>The Bitter Lesson</span></a></div></div>
+</article><article class="pane entry" id="sk-1" data-view="skeptics" data-ac="#2f6bb0" style="--ac:#2f6bb0">
+  <div class="kicker">post-LLM theorist 02 / 07</div>
+  <h2>Yann LeCun</h2>
+  <div class="move">co-founder and chairman, AMI Labs · former chief AI scientist at Meta</div>
+  <a class="prof" href="https://yann.lecun.com/" target="_blank" rel="noopener noreferrer">profile &#8599;</a>
+  <p class="desc">Predicting the next word cannot teach a machine the physical structure of the world. LeCun's position is that intelligence requires a model of how things behave, built from observation and action. He left Meta in late 2025 to build this, co-founding AMI Labs with $1.03B in funding.</p>
+  <div class="block"><div class="lbl">Read</div><div class="links"><a class="lnk" href="https://openreview.net/forum?id=BZ5a1r-kVsf" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>A Path Towards Autonomous Machine Intelligence</span><span class="src">2022</span></a></div></div>
+</article><article class="pane entry" id="sk-2" data-view="skeptics" data-ac="#6a4880" style="--ac:#6a4880">
+  <div class="kicker">post-LLM theorist 03 / 07</div>
+  <h2>Gary Marcus</h2>
+  <div class="move">cognitive scientist and author</div>
+  <a class="prof" href="https://garymarcus.substack.com/" target="_blank" rel="noopener noreferrer">profile &#8599;</a>
+  <p class="desc">Larger networks have not fixed the reliability problems. Marcus's case is that fluency is not understanding, and that without explicit knowledge and verification the errors will keep coming regardless of scale.</p>
+  <div class="block"><div class="lbl">Read</div><div class="links"><a class="lnk" href="https://nautil.us/deep-learning-is-hitting-a-wall-238440/" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Deep Learning Is Hitting a Wall</span><span class="src">Nautilus</span></a></div></div>
+</article><article class="pane entry" id="sk-3" data-view="skeptics" data-ac="#8a5a25" style="--ac:#8a5a25">
+  <div class="kicker">post-LLM theorist 04 / 07</div>
+  <h2>François Chollet</h2>
+  <div class="move">built Keras and the ARC-AGI benchmark · founder, Ndea</div>
+  <a class="prof" href="https://fchollet.com/" target="_blank" rel="noopener noreferrer">profile &#8599;</a>
+  <p class="desc">A system that has memorised a lot is not the same as a system that can figure out something new. Chollet's ARC-AGI benchmark was built to make that distinction testable. Frontier models saturated ARC-AGI-1 by late 2024. He responded with ARC-AGI-3 (March 2026), interactive puzzles that require learning from live experience. AI scores below 1%. Humans score 100%.</p>
+  <div class="block"><div class="lbl">Read</div><div class="links"><a class="lnk" href="https://arxiv.org/abs/1911.01547" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>On the Measure of Intelligence</span><span class="src">2019</span></a><a class="lnk" href="https://arcprize.org" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>ARC-AGI-3 benchmark</span><span class="src">2026</span></a></div></div>
+</article><article class="pane entry" id="sk-4" data-view="skeptics" data-ac="#8a2f56" style="--ac:#8a2f56">
+  <div class="kicker">post-LLM theorist 05 / 07</div>
+  <h2>Judea Pearl</h2>
+  <div class="move">Turing Award · cause-and-effect pioneer</div>
+  <a class="prof" href="http://bayes.cs.ucla.edu/jp_home.html" target="_blank" rel="noopener noreferrer">profile &#8599;</a>
+  <p class="desc">Pattern recognition and causal reasoning are different things. A system can learn that smoking and cancer appear together in data without understanding that one causes the other, or knowing what would happen if you intervened.</p>
+  <div class="block"><div class="lbl">Read</div><div class="links"><a class="lnk" href="http://bayes.cs.ucla.edu/WHY/" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>The Book of Why</span></a></div></div>
+</article><article class="pane entry" id="sk-5" data-view="skeptics" data-ac="#1f7a7a" style="--ac:#1f7a7a">
+  <div class="kicker">post-LLM theorist 06 / 07</div>
+  <h2>Bernhard Schölkopf</h2>
+  <div class="move">director, Max Planck Institute for Intelligent Systems</div>
+  <a class="prof" href="https://ei.is.mpg.de/person/bs" target="_blank" rel="noopener noreferrer">profile &#8599;</a>
+  <p class="desc">Models that learn correlations from a fixed dataset become unreliable when real-world conditions shift, whether a different hospital, a different market, or a different country. Schölkopf's work is on building in causal structure so models do not break when the setting changes.</p>
+  <div class="block"><div class="lbl">Read</div><div class="links"><a class="lnk" href="https://arxiv.org/abs/2102.11107" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>Towards Causal Representation Learning</span></a></div></div>
+</article><article class="pane entry" id="sk-6" data-view="skeptics" data-ac="#3f7a52" style="--ac:#3f7a52">
+  <div class="kicker">post-LLM theorist 07 / 07</div>
+  <h2>Yoshua Bengio</h2>
+  <div class="move">Turing Award · leads the Mila AI institute</div>
+  <a class="prof" href="https://yoshuabengio.org/" target="_blank" rel="noopener noreferrer">profile &#8599;</a>
+  <p class="desc">Fast pattern completion is not deliberate reasoning. In a 2019 NeurIPS keynote that shaped much of the subsequent debate, Bengio argued that reliable AI needs the capacity for slower, structured thought, built from explicit goals, variables, and causal chains.</p>
+  <div class="block"><div class="lbl">Read</div><div class="links"><a class="lnk" href="https://youtu.be/T3sxeTgT4qc" target="_blank" rel="noopener noreferrer"><span class="ar">&rarr;</span><span>From System 1 to System 2 Deep Learning</span><span class="src">NeurIPS 2019</span></a></div></div>
+</article>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  var bar=document.getElementById('bar');
+  var groups=document.querySelectorAll('[data-view-list]');
+  var allPanes=document.querySelectorAll('.pane');
+  var tabA=document.getElementById('tab-approaches'), tabS=document.getElementById('tab-skeptics');
+  var view='approaches';
+
+  // mark first pane of each view active so JS view-switch has a target
+  document.getElementById('ap-0').classList.add('active');
+
+  function listFor(v){ return document.querySelector('[data-view-list="'+v+'"]'); }
+  function panesFor(v){ return document.querySelectorAll('.pane[data-view="'+v+'"]'); }
+
+  function activate(id){
+    allPanes.forEach(function(p){ p.classList.toggle('active', p.id===id); });
+    var p=document.getElementById(id);
+    if(p){
+      bar.style.setProperty('--ac', p.getAttribute('data-ac'));
+      p.classList.remove('reveal'); void p.offsetWidth; p.classList.add('reveal');
+    }
+    var g=listFor(view), items=g.querySelectorAll('.item');
+    items.forEach(function(it){ it.setAttribute('aria-selected', it.getAttribute('data-target')===id); });
+    var li=g.querySelector('.item[data-target="'+id+'"]');
+    if(li){ g.setAttribute('aria-activedescendant', li.id||''); if(li.scrollIntoView) li.scrollIntoView({block:'nearest'}); }
+  }
+
+  function setView(v){
+    view=v;
+    groups.forEach(function(g){ g.classList.toggle('active', g.getAttribute('data-view-list')===v); });
+    tabA.setAttribute('aria-selected', v==='approaches');
+    tabS.setAttribute('aria-selected', v==='skeptics');
+    activate(panesFor(v)[0].id);
+  }
+
+  tabA.addEventListener('click', function(){ setView('approaches'); });
+  tabS.addEventListener('click', function(){ setView('skeptics'); });
+
+  document.querySelectorAll('.item').forEach(function(it){
+    it.addEventListener('click', function(e){ e.preventDefault(); activate(it.getAttribute('data-target')); });
+  });
+
+  var listEl=document.getElementById('list');
+  listEl.addEventListener('keydown', function(e){
+    if(e.key!=='ArrowDown' && e.key!=='ArrowUp') return;
+    e.preventDefault();
+    var items=Array.prototype.slice.call(listFor(view).querySelectorAll('.item'));
+    var cur=items.findIndex(function(it){ return it.getAttribute('aria-selected')==='true'; });
+    if(cur<0) cur=0;
+    var nx=e.key==='ArrowDown' ? (cur+1)%items.length : (cur-1+items.length)%items.length;
+    activate(items[nx].getAttribute('data-target'));
+  });
+
+  setView('approaches');
+})();
+</script>
+</body>
+</html>
