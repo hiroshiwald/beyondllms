@@ -302,6 +302,22 @@
   html:not(.js) .list-note{display:block}
   .list-note{display:none;font-family:var(--mono);font-size:10.5px;color:var(--muted);padding:8px 16px;letter-spacing:.04em}
 
+  /* --- v9 layout: one natural page scroll; no nested pane scrolling --- */
+  html,body{height:auto}
+  .app{height:auto;min-height:0}
+  main{flex:none;min-height:0}
+  .list{overflow:visible}
+  .detail{overflow:visible}
+  @media (max-width:720px){
+    main{display:block}
+    .list{max-height:none;overflow:visible;box-shadow:none}
+    .item{padding:16px 18px}
+    .item .nm{font-size:16px}
+    .pane{padding:24px 20px 30px}
+    .tabs{width:100%}
+    .tab{flex:1;text-align:center;padding:9px 14px}
+    header{margin-bottom:18px}
+  }
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -506,6 +522,7 @@
   // mark first pane of each view active so JS view-switch has a target
   document.getElementById('ap-0').classList.add('active');
 
+  var ready=false;
   function listFor(v){ return document.querySelector('[data-view-list="'+v+'"]'); }
   function panesFor(v){ return document.querySelectorAll('.pane[data-view="'+v+'"]'); }
 
@@ -519,7 +536,12 @@
     var g=listFor(view), items=g.querySelectorAll('.item');
     items.forEach(function(it){ it.setAttribute('aria-selected', it.getAttribute('data-target')===id); });
     var li=g.querySelector('.item[data-target="'+id+'"]');
-    if(li){ g.setAttribute('aria-activedescendant', li.id||''); if(li.scrollIntoView) li.scrollIntoView({block:'nearest'}); }
+    if(li){ g.setAttribute('aria-activedescendant', li.id||''); }
+    if(ready){
+      var mobile = window.matchMedia && window.matchMedia('(max-width:720px)').matches;
+      if(mobile){ if(p && p.scrollIntoView) p.scrollIntoView({behavior:'smooth', block:'start'}); }
+      else if(li && li.scrollIntoView){ li.scrollIntoView({block:'nearest'}); }
+    }
   }
 
   function setView(v){
@@ -549,6 +571,7 @@
   });
 
   setView('approaches');
+  ready=true;
 })();
 </script>
 </body>
